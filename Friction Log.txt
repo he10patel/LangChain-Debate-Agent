@@ -1,0 +1,18 @@
+Friction Log
+
+
+Evaluator variable mapping:
+- Observation: In the Playground, I attempted to configure an Evaluator before running the prompt for the first time. However, I couldn't map the {output} variable because the system hadn't yet registered the prompt's output.
+ 
+- Impact: This breaks the configuration flow. Users are forced to context-switch: they must run an unfinished prompt just to "wake up" the variable mapping options, rather than setting up the entire test suite in one go. 
+ 
+- Suggestion: Allow users to manually define or select expected output variables during the initial Evaluator
+ setup, even if a run hasn't occurred yet.
+ 
+
+Evaluator not editable:
+- Observation: When I deleted a specific Prompt in the Playground, the Evaluator attached to it remained in the list. When I clicked "Edit" on this now-orphaned evaluator, the UI failed silently (nothing happened) and no error message appeared.
+ 
+- Impact: This looks like a broken button or browser lag to the user. It also leaves "zombie" configurations in the UI that cannot be modified or easily removed, causing confusion.
+
+- Suggestion: Implement a "Cascade Delete": if a Prompt is removed, its dependent Evaluators should be automatically removed. Alternatively, visually disable (grey out) the evaluator with a tooltip explaining that the parent prompt is missing.
